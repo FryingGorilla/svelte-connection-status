@@ -83,7 +83,7 @@ export const isOffline = readable(
     window.addEventListener('offline', handleStatus);
 
     return () => {
-      clearInterval(fetchInterval);
+      if (setting.usePing) clearTimeout(fetchTimeout);
       window.removeEventListener('visibilitychange', handleActive);
       window.removeEventListener('online', handleStatus);
       window.removeEventListener('offline', handleStatus);
